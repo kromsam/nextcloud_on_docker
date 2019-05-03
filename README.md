@@ -108,6 +108,10 @@ This playbook even supports the integration with an online office suite! You can
 ```ini
 # Choose an online office suite to integrate with your Nextcloud. Your options are (without quotation marks): 'none', 'collabora' and 'onlyoffice'.
 online_office               = none
+```
+
+You can also choose which dictionaries you want to use for the Collabora office suite. If you want to change the default language of newly created files, there is a 'How to' in the Wiki of this repo on this.
+```ini
 # When using Collabora, you're able to install dictionaries alongside with it. Collabora's default is German (de).
 # collabora_dictionaries    = 'en'            # Separate ISO 639-1 codes with a space.
 ```
