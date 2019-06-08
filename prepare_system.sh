@@ -11,13 +11,14 @@ install_pip () {
 	$SUDO pip install dnspython -U
 	$SUDO pip install passlib -U
 	$SUDO pip install bcrypt -U
+	$SUDO pip install Jinja2 -U
 }
 
 prepare_ubuntu() { 
 	$SUDO apt update -y
 	$SUDO apt dist-upgrade -y
-	$SUDO apt install software-properties-common curl git mc vim facter python-minimal -y
-	$SUDO [ $(uname -m) == "aarch64" ] && apt install gcc python-dev libffi-dev libssl-dev make -y
+	$SUDO apt install software-properties-common curl git mc vim facter python-minimal python-apt aptitude -y
+	$SUDO [ $(uname -m) == "aarch64" ] && $SUDO apt install gcc python-dev libffi-dev libssl-dev make -y
 
 	PYTHON_BIN=/usr/bin/python
 	install_pip
@@ -30,8 +31,8 @@ prepare_ubuntu() {
 prepare_debian() { 
 	$SUDO apt update -y
 	$SUDO apt dist-upgrade -y
-	$SUDO apt install dirmngr curl git mc vim facter python -y
-	$SUDO [ $(uname -m) == "aarch64" ] && apt install gcc python-dev libffi-dev libssl-dev make -y
+	$SUDO apt install dirmngr curl git mc vim facter python python-apt -y
+	$SUDO [ $(uname -m) == "aarch64" ] && $SUDO apt install gcc python-dev libffi-dev libssl-dev make -y
 	
 	PYTHON_BIN=/usr/bin/python
 	install_pip
@@ -44,7 +45,7 @@ prepare_debian() {
 prepare_raspbian() {
 	$SUDO apt update -y
 	$SUDO apt dist-upgrade -y
-	$SUDO apt install dirmngr mc vim git libffi-dev curl facter -y
+	$SUDO apt install dirmngr mc vim git libffi-dev curl facter gcc python-dev python-apt libffi-dev libssl-dev make -y
 	PYTHON_BIN=/usr/bin/python
 	install_pip
 	
@@ -62,6 +63,19 @@ prepare_centos() {
 	
 	echo
 	echo "CentOS Sytem ready for nextcloud."
+	echo
+}
+
+prepare_amzn() { 
+	$SUDO amazon-linux-extras install epel
+	$SUDO yum install git vim mc curl facter libselinux-python -y
+	$SUDO yum update -y
+	PYTHON_BIN=/usr/bin/python
+	install_pip
+	
+	set +x
+	echo
+	echo "  Amazon Linux 2 ready for nextcloud."
 	echo
 }
 
@@ -98,6 +112,9 @@ case $ID in
 	;;
 	'centos')
 		prepare_centos
+	;;
+	'amzn')
+		prepare_amzn
 	;;
 	*)
 		usage
