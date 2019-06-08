@@ -1,7 +1,7 @@
 ---
 # defaults file for prep_nextcloud
 
-nextccloud_system_config:
+nextcloud_system_config:
   - "overwrite.cli.url --value=https://{{ nextcloud_server_fqdn }}"
   - "trusted_domains 0 --value={{ nextcloud_server_fqdn }}"
   - "trusted_domains 1 --value=nginx"
@@ -50,7 +50,7 @@ nextccloud_system_config:
   - "theme --value=''"
   
 
-nextccloud_mail_config:
+nextcloud_mail_config:
   - "mail_from_address --value={{ nextcloud_mail_from }}" 
   - "mail_smtpmode     --value={{ nextcloud_mail_smtpmode }}" 
   - "mail_smtpauthtype --value={{ nextcloud_mail_smtpauthtype }}" 
