@@ -85,7 +85,7 @@ nextcloud_mail_from         =
 nextcloud_mail_smtpmode     = smtp
 nextcloud_mail_smtpauthtype = LOGIN
 nextcloud_mail_domain       =
-nextcloud_mail_smtpname     =
+nextcloud_mail_username     =
 nextcloud_mail_smtpsecure   = tls
 nextcloud_mail_smtpauth     = 1
 nextcloud_mail_smtphost     =
@@ -108,12 +108,8 @@ This playbook even supports the integration with an online office suite! You can
 ```ini
 # Choose an online office suite to integrate with your Nextcloud. Your options are (without quotation marks): 'none', 'collabora' and 'onlyoffice'.
 online_office               = none
-```
-
-You can also choose which dictionaries you want to use for the Collabora office suite. If you want to change the default language of newly created files, there is a 'How to' in the Wiki of this repo on this.
-```ini
 # When using Collabora, you're able to install dictionaries alongside with it. Collabora's default is German (de).
-# collabora_dictionaries    = 'en'            # Separate ISO 639-1 codes with a space.
+collabora_dictionaries    = 'en'            # Separate ISO 639-1 codes with a space.
 ```
 
 You can also install the TURN server needed for [Nextcloud Talk](https://nextcloud.com/talk/).
